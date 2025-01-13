@@ -1,4 +1,5 @@
 import ichgram_logo from "../../assets/images/ichgram_logo.svg";
+import Button from "../Button/button";
 import RegisterForm from "../RegisterForm/registerForm";
 import styles from "./signupContainer.module.css";
 
@@ -26,6 +27,15 @@ function SignupContainer() {
           and <a href="#">Cookies Policy.</a>
         </p>
       </div>
+      <Button
+        text="Sign up"
+        route="/home"
+        textColor="#FFFFFF"
+        bgColor="#0095F6"
+        width="268px"
+        marginTop="7px"
+        marginBottom="28px"
+      />
     </section>
   );
 }

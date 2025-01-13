@@ -1,6 +1,5 @@
 import InputField from "../InputField/inputField";
 import styles from "./registerForm.module.css";
-import Button from "../Button/button";
 
 function RegisterForm() {
   return (
@@ -20,8 +19,6 @@ function RegisterForm() {
       <div>
         <InputField type="password" placeholder="Password" />
       </div>
-
-      <Button text="Sign up" type="submit" />
     </form>
   );
 }
