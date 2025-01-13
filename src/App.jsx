@@ -1,7 +1,7 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
-import Login from "./Pages/Login/login";
-// import Register from "./Pages/Register/register";
+import Login from "./pages/Login/login";
+import Register from "./Pages/Register/register";
 // import ResetPassword from "./Pages/ResetPassword/resetPassword";
 // import Home from "./Pages/Home/home";
 // import Footer from "./ui/Footer/footer";
@@ -20,11 +20,11 @@ function App() {
       <div className="content">
         <Routes>
           <Route path="/" element={<Login />} />
-          {/* <Route path="/register" element={<Register />} />
-          <Route path="/password_reset" element={<ResetPassword />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/profile" element={<MyProfile />} />
-          <Route path="/edit_profile" element={<EditProfile />} /> */}
+          <Route path="/register" element={<Register />} />
+          {/* <Route path="/password_reset" element={<ResetPassword />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/profile" element={<MyProfile />} />
+                    <Route path="/edit_profile" element={<EditProfile />} /> */}
         </Routes>
       </div>
       {!excludedRoutes.includes(location.pathname) && <Footer />}

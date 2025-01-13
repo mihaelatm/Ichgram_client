@@ -1,0 +1,29 @@
+.register_form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin: 0 45px;
+}
+
+/* Stiluri pentru mesajul de redirect */
+.redirect_message {
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  color: #4caf50; /* Culoare verde pentru succes */
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.redirect_message.show {
+  opacity: 1;
+  transform: translateY(0);
+}

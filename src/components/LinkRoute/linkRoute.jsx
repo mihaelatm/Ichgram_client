@@ -1,7 +1,7 @@
-import styles from "./links.module.css";
+import styles from "./linkRoute.module.css";
 import { Link } from "react-router-dom";
 
-function LoginLink({ text, path, auth }) {
+function LinkRoute({ text, path, auth }) {
   return (
     <div className={styles.sign_up}>
       <p>{text}</p>
@@ -12,4 +12,4 @@ function LoginLink({ text, path, auth }) {
   );
 }
 
-export default LoginLink;
+export default LinkRoute;

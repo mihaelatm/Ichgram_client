@@ -1,6 +1,6 @@
 import Ichgram from "../../assets/images/ichgram.png";
 import LoginForm from "../../components/LoginForm/loginForm";
-import Link from "../../components/Links/links";
+import Link from "../../components/LinkRoute/linkRoute";
 import styles from "./login.module.css";
 
 function Login() {
