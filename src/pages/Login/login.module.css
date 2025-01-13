@@ -1,0 +1,6 @@
+.login_screen {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 86px;
+}
