@@ -1,7 +1,7 @@
 import styles from "./links.module.css";
 import { Link } from "react-router-dom";
 
-function Links({ text, path, auth }) {
+function LoginLink({ text, path, auth }) {
   return (
     <div className={styles.sign_up}>
       <p>{text}</p>
@@ -12,4 +12,4 @@ function Links({ text, path, auth }) {
   );
 }
 
-export default Links;
+export default LoginLink;
