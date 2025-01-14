@@ -1,0 +1,43 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 47px;
+  padding-left: 25px;
+  border-right: 2px solid #dbdbdb;
+  width: 245px;
+  position: fixed;
+}
+
+.ichgram_logo {
+  width: 97px;
+  height: 54.56px;
+  margin-top: 28px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.link {
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+}
+span {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #000000;
+}
+
+.active span {
+  color: #000000;
+  font-size: 15.75px;
+  font-weight: 700;
+}
+
+.profile {
+  border-radius: 50%;
+}
