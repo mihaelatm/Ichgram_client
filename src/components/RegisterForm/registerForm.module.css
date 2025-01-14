@@ -12,13 +12,11 @@
   margin: 0 45px;
 }
 
-/* Stiluri pentru mesajul de redirect */
 .redirect_message {
   font-size: 1.5rem;
   text-align: center;
   font-weight: bold;
-  color: #4caf50; /* Culoare verde pentru succes */
-  opacity: 0;
+  color: #4caf50;
   transform: translateY(-10px);
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
@@ -26,4 +24,11 @@
 .redirect_message.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+.success {
+  align-items: center;
+  color: green;
+  margin: 0 40px;
+  margin-bottom: 20px;
 }

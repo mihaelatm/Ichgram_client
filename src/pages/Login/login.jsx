@@ -1,7 +1,7 @@
 import Ichgram from "../../assets/images/ichgram.png";
 import LoginForm from "../../components/LoginForm/loginForm";
-import Link from "../../components/LinkRoute/linkRoute";
 import styles from "./login.module.css";
+import LinkRoute from "../../components/LinkRoute/linkRoute";
 
 function Login() {
   return (
@@ -11,7 +11,11 @@ function Login() {
       </div>
       <div>
         <LoginForm />
-        <Link text="Don't have an account?" path="/register" auth="Sign up" />
+        <LinkRoute
+          text="Don't have an account?"
+          path="/register"
+          auth="Sign up"
+        />
       </div>
     </section>
   );
