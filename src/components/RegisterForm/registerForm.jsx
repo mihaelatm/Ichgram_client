@@ -20,7 +20,6 @@ function RegisterForm() {
     handleSubmit,
   } = useRegistration();
 
-  // Redirecționează utilizatorul după succes
   if (successMessage) {
     setTimeout(() => {
       navigate("/");

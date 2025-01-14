@@ -4,46 +4,33 @@ import Divider from "../Divider/divider";
 import InputField from "../InputField/inputField";
 import Button from "../Button/button";
 import TogglePasswordButton from "../TooglePassword/tooglePasswordButton";
-import { useState } from "react";
 import ForgotPassword from "../ForgotPassword/forgotPassword";
-import { useNavigate } from "react-router-dom"; // importă useNavigate
-import { loginUser } from "../../helpers/loginHelper"; // importă funcția de login
+import useLogin from "../../hooks/useLogin";
 
 const LoginForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [emailOrUsername, setEmailOrUsername] = useState(""); // state pentru email/username
-  const [password, setPassword] = useState(""); // state pentru parolă
-  const [errorMessage, setErrorMessage] = useState(""); // state pentru mesajul de eroare
-  const navigate = useNavigate(); // initializează useNavigate pentru redirecționare
-
-  const toggleShowPassword = () => {
-    setShowPassword((prev) => !prev);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const token = await loginUser(emailOrUsername, password); // apelăm funcția de login din helper
-      localStorage.setItem("token", token); // stocăm token-ul în localStorage
-      navigate("/home"); // redirecționăm utilizatorul către pagina home
-    } catch (error) {
-      setErrorMessage(error.message); // afișăm eroarea din helper
-    }
-  };
+  const {
+    emailOrUsername,
+    setEmailOrUsername,
+    password,
+    setPassword,
+    showPassword,
+    toggleShowPassword,
+    error,
+    handleLogin,
+  } = useLogin();
 
   return (
     <div className={styles.form_container}>
       <div className={styles.logo}>
         <img src={ichgram_logo} alt="ichgram_logo" />
       </div>
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleLogin}>
         <InputField
           type="text"
-          placeholder="Username or email"
+          placeholder="Email or username"
           className={styles.input}
           value={emailOrUsername}
-          onChange={(e) => setEmailOrUsername(e.target.value)} // actualizează valoarea
+          onChange={(e) => setEmailOrUsername(e.target.value)}
         />
         <div className={styles.password_wrapper}>
           <InputField
@@ -51,16 +38,16 @@ const LoginForm = () => {
             placeholder="Password"
             className={styles.input}
             value={password}
-            onChange={(e) => setPassword(e.target.value)} // actualizează valoarea
+            onChange={(e) => setPassword(e.target.value)}
           />
           <TogglePasswordButton
             showPassword={showPassword}
-            toggleShowPassword={toggleShowPassword}
-            onToggle={() => setShowPassword((prev) => !prev)}
+            onToggle={toggleShowPassword}
           />
         </div>
-        {errorMessage && <p className={styles.error_message}>{errorMessage}</p>}{" "}
-        {/* Afișează eroarea dacă există */}
+
+        {error && <p className={styles.error}>{error}</p>}
+
         <Button
           type="submit"
           text="Log in"
