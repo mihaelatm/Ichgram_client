@@ -102,7 +102,7 @@
   margin-bottom: 124px;
 }
 
-.aboutTextarea:focus,
+.about_textarea:focus,
 .input input:focus {
   outline: none;
 }
