@@ -3,7 +3,8 @@ import "./App.css";
 import Login from "./pages/Login/login";
 import Register from "./Pages/Register/register";
 // import ResetPassword from "./Pages/ResetPassword/resetPassword";
-// import Home from "./Pages/Home/home";
+import Home from "./pages/Home/home";
+import Footer from "./ui/Footer/footer";
 // import Footer from "./ui/Footer/footer";
 // import Header from "./ui/Header/header";
 // import MyProfile from "./Pages/MyProfile/myProfile";
@@ -21,9 +22,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          {/* <Route path="/password_reset" element={<ResetPassword />} />
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/profile" element={<MyProfile />} />
+          {/* <Route path="/password_reset" element={<ResetPassword />} /> */}
+          <Route path="/home" element={<Home />} />
+          {/* <Route path="/profile" element={<MyProfile />} />
                     <Route path="/edit_profile" element={<EditProfile />} /> */}
         </Routes>
       </div>
