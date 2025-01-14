@@ -1,0 +1,38 @@
+.error_page {
+  margin-left: 245px;
+  display: flex;
+  gap: 47px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 185px;
+}
+
+.error_image {
+  margin-top: 94px;
+}
+
+.error_image img {
+  max-width: 301.03px;
+  height: 460px;
+}
+
+.error_text {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 161px;
+}
+
+.error_title {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.error_message {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #737373;
+  max-width: 475px;
+}

@@ -6,6 +6,7 @@ import Register from "./Pages/Register/register";
 import Home from "./Pages/Home/home";
 import Footer from "./ui/Footer/footer";
 import Header from "./ui/Header/header";
+import ErrorPage from "./pages/ErrorPage/errorPage";
 // import MyProfile from "./Pages/MyProfile/myProfile";
 // import EditProfile from "./Pages/EditProfile/editProfile";
 
@@ -25,6 +26,8 @@ function App() {
           <Route path="/home" element={<Home />} />
           {/* <Route path="/profile" element={<MyProfile />} />
           <Route path="/edit_profile" element={<EditProfile />} /> */}
+
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
       {!excludedRoutes.includes(location.pathname) && <Footer />}
