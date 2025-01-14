@@ -6,8 +6,9 @@ import Register from "./Pages/Register/register";
 import Home from "./Pages/Home/home";
 import Footer from "./ui/Footer/footer";
 import Header from "./ui/Header/header";
+import Profile from "./Pages/Profile/profile";
 import ErrorPage from "./pages/ErrorPage/errorPage";
-// import MyProfile from "./Pages/MyProfile/myProfile";
+
 // import EditProfile from "./Pages/EditProfile/editProfile";
 
 function App() {
@@ -24,8 +25,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           {/* <Route path="/password_reset" element={<ResetPassword />} /> */}
           <Route path="/home" element={<Home />} />
-          {/* <Route path="/profile" element={<MyProfile />} />
-          <Route path="/edit_profile" element={<EditProfile />} /> */}
+          <Route path="/profile" element={<Profile />} />
+          {/* <Route path="/edit_profile" element={<EditProfile />} /> */}
 
           <Route path="*" element={<ErrorPage />} />
         </Routes>

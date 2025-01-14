@@ -1,0 +1,22 @@
+.profile_content {
+  display: flex;
+  gap: 70px;
+  margin-top: 28px;
+}
+
+.stat {
+  display: flex;
+  gap: 5px;
+}
+
+.stat_number {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.stat_label {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18px;
+}
