@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./aboutProfile.module.css";
 import UserActivity from "../UserActivity/userActivity";
 import link_icon from "../../assets/icons/link_icon.svg";

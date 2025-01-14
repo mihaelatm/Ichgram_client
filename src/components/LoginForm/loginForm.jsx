@@ -48,7 +48,9 @@ const LoginForm = () => {
 
         {error && <p className={styles.error}>{error}</p>}
 
-        <Button type="submit" text="Log in" className={styles.login_button} />
+        <div className={styles.button_container}>
+          <Button type="submit" text="Log in" className={styles.login_button} />
+        </div>
       </form>
 
       <Divider />

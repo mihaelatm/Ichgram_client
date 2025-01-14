@@ -1,20 +1,10 @@
 .button {
-  width: 268px;
-  margin: 0 40px;
-  margin-top: 7px;
   height: 32px;
-  background-color: #0095f6;
   border: none;
   border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
-  color: #ffffff;
   cursor: pointer;
-  margin-bottom: 22px;
   font-family: "Roboto", sans-serif;
-}
-
-.container {
-  text-align: center;
 }

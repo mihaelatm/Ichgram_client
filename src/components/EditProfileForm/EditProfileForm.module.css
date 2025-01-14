@@ -1,0 +1,108 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 33px;
+}
+
+.container label {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  margin-bottom: 8px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+}
+
+.input input,
+.input textarea {
+  margin-bottom: 22px;
+  padding: 11px 17px;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+  border: 1px solid #dbdfe4;
+}
+
+.input_with_icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  position: absolute;
+  left: 17px;
+  bottom: 35px;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+}
+
+.input_with_icon input {
+  padding-left: 36px;
+  height: 36px;
+  border: 1px solid #dbdfe4;
+  font-size: 14px;
+}
+
+.input_with_span {
+  display: flex;
+  flex-direction: column;
+}
+
+.about_textarea {
+  width: 100%;
+  max-width: 610px;
+  height: 62px;
+  padding: 11px 22px;
+  font-size: 14px;
+  border-radius: 12px;
+  font-family: "Roboto", sans-serif;
+  line-height: 1.5;
+  overflow-y: hidden;
+  border: 1px solid #dbdfe4;
+  word-wrap: break-word;
+  display: block;
+  resize: none;
+}
+
+.about_textarea::placeholder {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #000000;
+}
+
+.character_count {
+  position: absolute;
+  right: 8px;
+  top: 60%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #737373;
+  pointer-events: none;
+}
+
+.input_container {
+  position: relative;
+  width: 100%;
+}
+
+.save_button {
+  width: 268px;
+  margin-top: 67px;
+  background-color: #0095f6;
+  color: #ffffff;
+  cursor: pointer;
+  margin-bottom: 124px;
+}
+
+.aboutTextarea:focus,
+.input input:focus {
+  outline: none;
+}

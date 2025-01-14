@@ -33,6 +33,12 @@
   margin-bottom: 20px;
 }
 
+.button_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .register_button {
   color: #ffffff;
   background-color: #0095f6;

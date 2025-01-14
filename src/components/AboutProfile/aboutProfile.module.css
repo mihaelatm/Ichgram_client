@@ -5,8 +5,7 @@
 
 .about_profile {
   display: flex;
-  align-items: baseline;
-  justify-content: center;
+  align-items: center;
   gap: 20px;
 }
 
@@ -21,9 +20,6 @@
   font-size: 14px;
   background-color: #efefef;
   color: #000000;
-  display: inline;
-  align-items: center;
-  text-align: center;
 }
 
 .about_info {
