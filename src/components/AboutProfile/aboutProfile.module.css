@@ -5,8 +5,9 @@
 
 .about_profile {
   display: flex;
+  align-items: baseline;
+  justify-content: center;
   gap: 20px;
-  align-items: center;
 }
 
 .name {
@@ -17,17 +18,12 @@
 
 .link_edit_profile {
   width: 169px;
-  height: 32px;
-  border-radius: 8px;
-  border: none;
+  font-size: 14px;
   background-color: #efefef;
   color: #000000;
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 18px;
-  cursor: pointer;
+  display: inline;
   align-items: center;
+  text-align: center;
 }
 
 .about_info {

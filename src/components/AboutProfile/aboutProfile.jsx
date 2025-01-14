@@ -1,16 +1,25 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./aboutProfile.module.css";
 import UserActivity from "../UserActivity/userActivity";
 import link_icon from "../../assets/icons/link_icon.svg";
+import Button from "../Button/button";
 
 function AboutProfile() {
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate("/edit_profile");
+  };
   return (
     <div className={styles.about_content}>
       <div className={styles.about_profile}>
         <p className={styles.name}>itcareerhub</p>
-        <Link to="/edit_profile">
-          <button className={styles.link_edit_profile}>Edit profile</button>
-        </Link>
+
+        <Button
+          text="Edit profile"
+          className={styles.link_edit_profile}
+          onClick={handleNavigate}
+        />
       </div>
       <div className={styles.activity_container}>
         <UserActivity />

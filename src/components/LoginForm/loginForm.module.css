@@ -24,3 +24,11 @@
   margin: 0 40px;
   font-size: 14px;
 }
+
+.login_button {
+  color: #ffffff;
+  background-color: #0095f6;
+  width: 268px;
+  margin-top: 7px;
+  margin-bottom: 28px;
+}

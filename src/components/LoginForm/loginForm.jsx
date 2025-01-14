@@ -48,15 +48,7 @@ const LoginForm = () => {
 
         {error && <p className={styles.error}>{error}</p>}
 
-        <Button
-          type="submit"
-          text="Log in"
-          textColor="#FFFFFF"
-          bgColor="#0095F6"
-          width="268px"
-          marginTop="7px"
-          marginBottom="28px"
-        />
+        <Button type="submit" text="Log in" className={styles.login_button} />
       </form>
 
       <Divider />

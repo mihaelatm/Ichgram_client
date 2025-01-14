@@ -71,15 +71,7 @@ function RegisterForm() {
       {errors.message && <p className={styles.error}>{errors.message}</p>}
 
       <SignupLinks />
-      <Button
-        type="submit"
-        text="Sign up"
-        textColor="#ffffff"
-        bgColor="#0095F6"
-        width="268px"
-        marginTop="7px"
-        marginBottom="28px"
-      />
+      <Button type="submit" text="Sign up" className={styles.register_button} />
 
       {successMessage && <p className={styles.success}>{successMessage}</p>}
     </form>

@@ -1,0 +1,6 @@
+.profile_posts {
+  margin: 74px 0 270px 170px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
