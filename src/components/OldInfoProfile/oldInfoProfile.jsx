@@ -1,18 +1,28 @@
+import { useSelector } from "react-redux";
 import styles from "./oldInfoProfile.module.css";
+import Button from "../Button/button";
 
 function OldInfoProfile() {
+  const username = useSelector((state) => state.username.username);
+  const bio = useSelector((state) => state.bio.bio);
+
   return (
     <div className={styles.container}>
-      <div className={styles.circle}>
-        <span className={styles.placeholder}>NO PHOTO</span>
+      <div className={styles.profile_info}>
+        <div className={styles.circle}>
+          <span className={styles.placeholder}>NO PHOTO</span>
+        </div>
+        <div className={styles.edit_info}>
+          <p className={styles.username}>{username}</p>
+          <p className={styles.bio}>
+            {bio || "Write something about yourself ..."}
+          </p>
+        </div>
       </div>
-      <div className={styles.edit_info}>
-        <p className={styles.name}></p>
 
-        <p className={styles.description}>Write something about yourself ...</p>
+      <div className={styles.new_photo}>
+        <Button text="New photo" className={styles.new_photo_bttn} />
       </div>
-
-      <button className={styles.new_photo_bttn}>New Photo</button>
       <input type="file" style={{ display: "none" }} />
     </div>
   );

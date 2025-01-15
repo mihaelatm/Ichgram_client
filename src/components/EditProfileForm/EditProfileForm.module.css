@@ -65,6 +65,7 @@
   overflow-y: hidden;
   border: 1px solid #dbdfe4;
   word-wrap: break-word;
+  white-space: pre-wrap;
   display: block;
   resize: none;
 }

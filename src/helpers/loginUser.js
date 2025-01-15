@@ -13,7 +13,7 @@ const loginUser = async (emailOrUsername, password) => {
 
     const token = response.data.token;
 
-    localStorage.setItem("authToken", token);
+    localStorage.setItem("token", token);
 
     return token;
   } catch (err) {

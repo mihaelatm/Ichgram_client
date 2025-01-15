@@ -1,7 +1,8 @@
 import styles from "./header.module.css";
 import ichgram_logo from "../../assets/images/ichgram_logo.svg";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import links from "../../utils/links";
+import logout_icon from "../../assets/icons/logout_icon.svg";
 
 function Header({ userProfileImage }) {
   return (
@@ -50,6 +51,7 @@ function Header({ userProfileImage }) {
                 <img
                   alt="profile_icon"
                   className={styles.profile}
+                  // Dacă utilizatorul are imagine, o afișăm, altfel afișăm iconița de profil
                   src={
                     userProfileImage ||
                     links.find((link) => link.to === "/profile").icon
@@ -60,6 +62,10 @@ function Header({ userProfileImage }) {
             </>
           )}
         </NavLink>
+        <Link to="/" className={styles.logout_link}>
+          <img src={logout_icon} alt="logout" className={styles.logout_img} />
+          <p className={styles.logout_text}>Logout</p>
+        </Link>
       </div>
     </section>
   );

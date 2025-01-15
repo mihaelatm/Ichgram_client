@@ -1,6 +1,6 @@
 import axios from "axios";
 
-async function registerUser(email, fullName, username, password, uniqueLink) {
+async function registerUser(email, fullName, username, password, profileLink) {
   try {
     const response = await axios.post(
       "http://localhost:3000/api/auth/register",
@@ -9,7 +9,7 @@ async function registerUser(email, fullName, username, password, uniqueLink) {
         full_name: fullName,
         username,
         password,
-        profileLink: uniqueLink,
+        profile_link: profileLink,
       }
     );
 

@@ -3,7 +3,7 @@ import registerUser from "../helpers/registerUser";
 import { useDispatch } from "react-redux";
 import { setUsername } from "../redux/slices/usernameSlice";
 import { setProfileLink } from "../redux/slices/profileLink";
-import { v4 as uuidv4 } from "uuid"; // Import uuid pentru generare
+import { v4 as uuidv4 } from "uuid";
 
 export const useRegistration = () => {
   const dispatch = useDispatch();
@@ -29,8 +29,7 @@ export const useRegistration = () => {
       return;
     }
 
-    // Generăm un link unic pentru profil
-    const uniqueLink = `bit.ly/${uuidv4()}`;
+    const profileLink = `bit.ly/${uuidv4()}`;
 
     try {
       const result = await registerUser(
@@ -38,7 +37,7 @@ export const useRegistration = () => {
         fullName,
         username,
         password,
-        uniqueLink
+        profileLink
       );
 
       if (result.success) {
@@ -46,8 +45,9 @@ export const useRegistration = () => {
           "Registration successful! Redirecting to login page..."
         );
         dispatch(setUsername(username));
-        dispatch(setProfileLink(uniqueLink));
         localStorage.setItem("username", username);
+        dispatch(setProfileLink(profileLink));
+        localStorage.setItem("profileLink", profileLink);
         return true;
       } else {
         setErrors(result.errors || { message: "Registration failed" });

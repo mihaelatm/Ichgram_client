@@ -3,10 +3,13 @@
   margin-top: 44px;
   border-radius: 20px;
   padding: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   max-width: 610px;
+  display: flex;
+  align-items: center;
+}
+
+.profile_info {
+  display: flex;
 }
 
 .circle {
@@ -18,7 +21,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(145deg, #f0f0f0, #dcdcdc); /* Gradient subtil */
+  background: linear-gradient(145deg, #f0f0f0, #dcdcdc);
   position: relative;
 }
 
@@ -46,30 +49,29 @@
   margin-left: 20px;
 }
 
-.name {
+.username {
   font-size: 16px;
   font-weight: 700;
   line-height: 20px;
 }
 
-.description {
+.bio {
   max-width: 265px;
   font-size: 14px;
   font-weight: 400;
   color: #737373;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin-top: auto;
+}
+
+.new_photo {
+  display: flex;
+  margin-left: auto;
 }
 
 .new_photo_bttn {
-  margin-left: auto;
   width: 114px;
-  height: 32px;
-  border-radius: 8px;
-  border: none;
   background-color: #0095f6;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 18px;
-  color: #fff;
-  cursor: pointer;
-  font-family: "Roboto", sans-serif;
+  color: #ffffff;
 }

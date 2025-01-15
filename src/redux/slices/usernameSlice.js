@@ -1,13 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const savedUsername = localStorage.getItem("username") || "";
+
 const usernameSlice = createSlice({
   name: "username",
   initialState: {
-    username: "",
+    username: savedUsername,
   },
   reducers: {
     setUsername: (state, action) => {
       state.username = action.payload;
+      localStorage.setItem("username", action.payload);
     },
   },
 });
