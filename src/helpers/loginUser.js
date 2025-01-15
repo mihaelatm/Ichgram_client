@@ -11,13 +11,19 @@ const loginUser = async (emailOrUsername, password) => {
       body
     );
 
-    const token = response.data.token;
+    const { token, username, profileLink, bio } = response.data;
+
+    if (!token) {
+      throw new Error("Token not received. Please try again.");
+    }
 
     localStorage.setItem("token", token);
 
-    return token;
+    return { token, username, profileLink, bio };
   } catch (err) {
-    throw new Error(err.response?.data?.message || "Login error");
+    const errorMessage =
+      err.response?.data?.message || err.message || "Login error";
+    throw new Error(errorMessage);
   }
 };
 

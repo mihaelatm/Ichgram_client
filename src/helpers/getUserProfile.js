@@ -1,28 +1,34 @@
 import axios from "axios";
-import * as jwt_decode from "jwt-decode";
+import jwt_decode from "jwt-decode";
 
-const getUserProfile = async (token) => {
+const getUserProfile = async () => {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    console.error("Token is missing");
+    return;
+  }
+
   try {
-    const decoded = jwt_decode(token);
-    const userId = decoded.user_id;
+    // Decodifică token-ul pentru a extrage userId
+    const decodedToken = jwt_decode(token);
+    const userId = decodedToken.id; // Presupunând că id-ul utilizatorului este în token
 
     const response = await axios.get(
       `http://localhost:3000/api/user/${userId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
         },
       }
     );
 
-    return response.data;
+    const data = response.data;
+
+    console.log("User profile data:", data);
+    // Salvează datele utilizatorului în Redux sau în starea locală
   } catch (error) {
-    console.error(
-      "Error fetching user profile:",
-      error.response?.data || error.message
-    );
-    throw new Error("Error fetching user profile: " + error.message);
+    console.error("Error fetching profile:", error);
   }
 };
 
