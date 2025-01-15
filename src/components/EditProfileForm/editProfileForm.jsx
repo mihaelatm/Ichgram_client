@@ -13,8 +13,21 @@ function EditProfileForm() {
   const username = useSelector((state) => state.username.username);
   const profileLink = useSelector((state) => state.profileLink.profileLink);
   const bio = useSelector((state) => state.bio.bio);
-  const [aboutText, setAboutText] = useState(bio || "");
+  const [aboutText, setAboutText] = useState(bio || ""); // Setează valoarea inițială din Redux
   const [error, setError] = useState(""); // State pentru mesaje de eroare
+
+  // Funcția care adaugă punctulețul la începutul fiecărei linii, dar doar dacă linia nu este goală
+  const addBulletPoints = (text) => {
+    const lines = text.split("\n").map((line) => {
+      if (line.trim() && !line.startsWith("• ")) {
+        return `• ${line.trim()}`;
+      } else if (!line.trim()) {
+        return ""; // Permite linii goale fără punctulețe
+      }
+      return line;
+    });
+    return lines.join("\n");
+  };
 
   const handleSave = async () => {
     const updatedUsername = document.getElementById("username").value;
@@ -28,23 +41,28 @@ function EditProfileForm() {
     const payload = {
       username: updatedUsername,
       bio: aboutText,
-      profileLink: updatedProfileLink, // Include și profilul
+      profileLink: updatedProfileLink,
     };
 
     try {
-      const token = localStorage.getItem("token"); // Obținem token-ul din localStorage
+      const token = localStorage.getItem("token");
       if (!token) {
         setError("User is not authenticated");
         return;
       }
 
-      const result = await updateProfile(token, payload); // Apelăm funcția pentru actualizare
-      console.log("Profil actualizat:", result);
+      // Salvează datele în baza de date
+      const result = await updateProfile(token, payload);
 
-      // Actualizăm state-ul Redux
+      // Dacă actualizarea în baza de date este un succes, actualizează Redux și localStorage
       dispatch(setUsername(updatedUsername));
       dispatch(setProfileLink(updatedProfileLink));
       dispatch(setBio(aboutText));
+
+      // Salvează datele și în localStorage pentru a persista după reîncărcarea paginii
+      localStorage.setItem("username", updatedUsername);
+      localStorage.setItem("profileLink", updatedProfileLink);
+      localStorage.setItem("bio", aboutText);
 
       setError(""); // Resetăm eroarea după succes
     } catch (error) {
@@ -53,30 +71,9 @@ function EditProfileForm() {
   };
 
   const handleTextChange = (e) => {
-    let value = e.target.value;
-
-    const lines = value.split("\n").map((line) => {
-      if (line.trim() === "") return "";
-      if (!line.startsWith("•")) {
-        return "• " + line;
-      }
-      return line;
-    });
-
-    setAboutText(lines.join("\n"));
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      setAboutText((prevText) => {
-        const lastLine = prevText.split("\n").pop();
-        if (!lastLine || lastLine.trim() === "") {
-          return prevText + "• ";
-        }
-        return prevText + "\n• ";
-      });
-    }
+    // Aplicați logica de adăugare a punctulețelor la textul introdus
+    const updatedText = addBulletPoints(e.target.value);
+    setAboutText(updatedText);
   };
 
   return (
@@ -102,7 +99,6 @@ function EditProfileForm() {
               value={aboutText}
               placeholder="Write something about yourself..."
               onChange={handleTextChange}
-              onKeyDown={handleKeyDown}
             />
             <span className={styles.character_count}>
               {aboutText.length} / 150

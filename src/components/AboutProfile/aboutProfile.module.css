@@ -49,3 +49,10 @@ span {
   line-height: 18px;
   color: #00376b;
 }
+
+.bio {
+  word-wrap: break-word;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  display: block;
+}

@@ -3,8 +3,11 @@ import styles from "./oldInfoProfile.module.css";
 import Button from "../Button/button";
 
 function OldInfoProfile() {
-  const username = useSelector((state) => state.username.username);
-  const bio = useSelector((state) => state.bio.bio);
+  const username =
+    useSelector((state) => state.username.username) ||
+    localStorage.getItem("username");
+  const bio =
+    useSelector((state) => state.bio.bio) || localStorage.getItem("bio");
 
   return (
     <div className={styles.container}>

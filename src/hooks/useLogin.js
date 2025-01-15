@@ -27,28 +27,23 @@ const useLogin = () => {
     }
 
     try {
-      // Apelează funcția pentru login și obține datele utilizatorului
       const { token, username, profileLink, bio } = await loginUser(
         emailOrUsername,
         password
       );
 
       if (token) {
-        // Curăță vechile informații din localStorage
         localStorage.clear();
 
-        // Salvează token-ul și informațiile utilizatorului
         localStorage.setItem("token", token);
         localStorage.setItem("username", username);
         localStorage.setItem("profileLink", profileLink);
         localStorage.setItem("bio", bio);
 
-        // Actualizează state-ul din Redux
         dispatch(setUsername(username));
         dispatch(setProfileLink(profileLink));
         dispatch(setBio(bio));
 
-        // Redirecționează utilizatorul către pagina principală
         navigate("/home");
       } else {
         setError("Invalid login credentials");
