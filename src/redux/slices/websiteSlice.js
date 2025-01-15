@@ -1,17 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const websiteSlice = createSlice({
-  name: "website",
+const websiteLinkSlice = createSlice({
+  name: "websiteLink",
   initialState: {
-    link: "",
+    website_link: "",
   },
   reducers: {
-    setWebsite: (state, action) => {
-      state.link = action.payload;
+    setWebsiteLink: (state, action) => {
+      state.website_link = action.payload;
     },
   },
 });
 
-export const { setWebsite } = websiteSlice.actions;
-
-export default websiteSlice.reducer;
+export const { setWebsiteLink } = websiteLinkSlice.actions;
+export default websiteLinkSlice.reducer;

@@ -26,7 +26,7 @@ const useLogin = () => {
 
       if (token) {
         localStorage.setItem("token", token);
-        navigate("/home"); // Redirecționează utilizatorul către pagina de home
+        navigate("/home");
       }
     } catch (err) {
       setError(err.message || "Login error");

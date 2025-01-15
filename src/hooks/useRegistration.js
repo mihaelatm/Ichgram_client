@@ -1,8 +1,10 @@
-// helpers/useRegistration.js
 import { useState } from "react";
 import registerUser from "../helpers/registerUser";
+import { useDispatch } from "react-redux";
+import { setUsername } from "../redux/slices/usernameSlice";
 
 export const useRegistration = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [username, setUsernameLocal] = useState("");
@@ -32,6 +34,8 @@ export const useRegistration = () => {
         setSuccessMessage(
           "Registration successful! Redirecting to login page..."
         );
+        dispatch(setUsername(username));
+        localStorage.setItem("username", username);
         return true;
       } else {
         setErrors(result.errors || { message: "Registration failed" });

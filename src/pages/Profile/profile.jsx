@@ -2,7 +2,7 @@ import ProfileHeader from "../../components/ProfileHeader/profileHeader";
 import ProfilePosts from "../../components/ProfilePosts/profilePosts";
 import styles from "./profile.module.css";
 
-function MyProfile() {
+function Profile() {
   return (
     <div className={styles.profile}>
       <ProfileHeader />
@@ -11,4 +11,4 @@ function MyProfile() {
   );
 }
 
-export default MyProfile;
+export default Profile;
