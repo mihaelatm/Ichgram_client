@@ -8,14 +8,19 @@ import link_icon from "../../assets/icons/link_icon.svg";
 function AboutProfile() {
   const navigate = useNavigate();
 
-  // Accesăm username din Redux
   const username = useSelector((state) => state.username.username);
-
-  // Preluăm username din localStorage dacă nu există în Redux
   const storedUsername = localStorage.getItem("username");
-
-  // Folosim username-ul din Redux dacă există, altfel din localStorage
   const displayUsername = username || storedUsername;
+
+  // Preluăm link-ul din Redux sau localStorage
+  const profileLink =
+    useSelector((state) => state.profileLink.profileLink) ||
+    localStorage.getItem("profileLink");
+
+  // Extragerea UUID-ului din link-ul complet
+  const displayProfileLink = profileLink
+    ? profileLink.split("/").pop() // obține UUID-ul
+    : null;
 
   const handleNavigate = () => {
     navigate("/edit_profile");
@@ -24,11 +29,9 @@ function AboutProfile() {
   return (
     <div className={styles.about_content}>
       <div className={styles.about_profile}>
-        {/* Afișăm username-ul */}
         {displayUsername && (
           <p className={styles.username}>{displayUsername}</p>
         )}
-
         <Button
           text="Edit profile"
           className={styles.link_edit_profile}
@@ -49,7 +52,11 @@ function AboutProfile() {
         </ul>
         <div className={styles.link}>
           <img src={link_icon} alt="link_icon" />
-          <p className={styles.link_text}>Additional user links</p>
+          <p className={styles.link_text}>
+            {displayProfileLink
+              ? `bit.ly/${displayProfileLink}`
+              : "No profile link available"}
+          </p>
         </div>
       </div>
     </div>

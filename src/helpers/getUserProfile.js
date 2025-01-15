@@ -3,7 +3,6 @@ import * as jwt_decode from "jwt-decode";
 
 const getUserProfile = async (token) => {
   try {
-    // Decodifici token-ul pentru a obține userId
     const decoded = jwt_decode(token);
     const userId = decoded.user_id;
 
