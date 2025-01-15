@@ -43,12 +43,13 @@ span {
   border-radius: 50%;
 }
 
-.logout_link {
+.logout_wrapper {
   margin-top: 15px;
   display: flex;
   gap: 20px;
   color: red;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .logout_img {
