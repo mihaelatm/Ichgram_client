@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { setUsername } from "../redux/slices/usernameSlice";
 import { setProfileLink } from "../redux/slices/profileLink";
 import { setBio } from "../redux/slices/bioSlice";
+import { setProfileImage } from "../redux/slices/imageSlice";
 
 const useLogin = () => {
   const [emailOrUsername, setEmailOrUsername] = useState("");
@@ -27,10 +28,8 @@ const useLogin = () => {
     }
 
     try {
-      const { token, username, profileLink, bio } = await loginUser(
-        emailOrUsername,
-        password
-      );
+      const { token, username, profileLink, bio, profile_image } =
+        await loginUser(emailOrUsername, password);
 
       if (token) {
         localStorage.clear();
@@ -39,11 +38,15 @@ const useLogin = () => {
         localStorage.setItem("username", username);
         localStorage.setItem("profileLink", profileLink);
         localStorage.setItem("bio", bio);
+        localStorage.setItem("profile_image", profile_image || ""); // Salvează imaginea de profil în format base64
 
+        // Actualizează starea Redux
         dispatch(setUsername(username));
         dispatch(setProfileLink(profileLink));
         dispatch(setBio(bio));
+        dispatch(setProfileImage(profile_image || "")); // Actualizează imaginea de profil în Redux
 
+        // Navighează către pagina principală
         navigate("/home");
       } else {
         setError("Invalid login credentials");

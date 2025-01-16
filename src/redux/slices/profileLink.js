@@ -10,7 +10,7 @@ const profileLinkSlice = createSlice({
   reducers: {
     setProfileLink: (state, action) => {
       state.profileLink = action.payload;
-      localStorage.setItem("profileLink", action.payload); // Salvează în localStorage
+      localStorage.setItem("profileLink", action.payload);
     },
   },
 });

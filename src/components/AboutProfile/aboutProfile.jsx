@@ -1,46 +1,19 @@
+// src/components/AboutProfile/AboutProfile.js
+
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import Button from "../Button/button";
 import styles from "./aboutProfile.module.css";
 import UserActivity from "../userActivity/userActivity";
 import link_icon from "../../assets/icons/link_icon.svg";
-import { useState, useEffect } from "react";
-import { setUsername } from "../../redux/slices/usernameSlice";
-import { setProfileLink } from "../../redux/slices/profileLink";
-import { setBio } from "../../redux/slices/bioSlice"; // importă setBio
+import useAboutProfile from "../../hooks/useAboutProfile";
 
 function AboutProfile() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const username = useSelector((state) => state.username.username);
-  const profileLink = useSelector((state) => state.profileLink.profileLink);
-  const bio = useSelector((state) => state.bio.bio); // accesează bio-ul din Redux
-
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  useEffect(() => {
-    const storedUsername = localStorage.getItem("username");
-    const storedProfileLink = localStorage.getItem("profileLink");
-    const storedBio = localStorage.getItem("bio");
-
-    if (storedUsername && !username) {
-      dispatch(setUsername(storedUsername));
-    }
-    if (storedProfileLink && !profileLink) {
-      dispatch(setProfileLink(storedProfileLink));
-    }
-    if (storedBio && !bio) {
-      dispatch(setBio(storedBio)); // setează bio-ul în Redux
-    }
-  }, [dispatch, username, profileLink, bio]);
+  const { username, profileLink, bio, isExpanded, handleLinkClick } =
+    useAboutProfile();
 
   const handleNavigate = () => {
     navigate("/edit_profile");
-  };
-
-  const handleLinkClick = () => {
-    setIsExpanded(!isExpanded);
   };
 
   return (

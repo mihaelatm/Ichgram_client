@@ -11,7 +11,7 @@ const loginUser = async (emailOrUsername, password) => {
       body
     );
 
-    const { token, username, profileLink, bio } = response.data;
+    const { token, username, profileLink, bio, profile_image } = response.data;
 
     if (!token) {
       throw new Error("Token not received. Please try again.");
@@ -19,7 +19,7 @@ const loginUser = async (emailOrUsername, password) => {
 
     localStorage.setItem("token", token);
 
-    return { token, username, profileLink, bio };
+    return { token, username, profileLink, bio, profile_image };
   } catch (err) {
     const errorMessage =
       err.response?.data?.message || err.message || "Login error";
