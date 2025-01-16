@@ -1,8 +1,23 @@
+.modal_container {
+  position: fixed;
+  top: 0;
+  left: 285px;
+  width: 1220px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(1px);
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
 .window_modal {
   width: 913px;
   height: 564px;
   border-radius: 8px;
-  border: 1px solid #000;
+  background-color: white;
+  overflow: hidden;
 }
 
 .window_modal_header {
@@ -65,9 +80,22 @@
 .info_person {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
   margin-top: 18px;
   margin-left: 16px;
+}
+
+.profile_image_container {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.profile_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .smile_icon {

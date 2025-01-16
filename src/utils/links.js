@@ -9,7 +9,6 @@ import message_icon_filled from "../assets/icons/message_icon_filled.svg";
 import notification_icon from "../assets/icons/notification_icon.svg";
 import notification_icon_filled from "../assets/icons/notification_icon_filled.svg";
 import create_icon from "../assets/icons/create_icon.svg";
-import border_profile_icon from "../assets/icons/border_profile_icon.svg";
 
 const links = [
   { to: "/home", label: "Home", icon: home_icon, filledIcon: home_icon_filled },
@@ -38,14 +37,8 @@ const links = [
     filledIcon: notification_icon_filled,
   },
   {
-    to: "/create",
     label: "Create",
     icon: create_icon,
-  },
-  {
-    to: "/profile",
-    label: "Profile",
-    icon: border_profile_icon,
   },
 ];
 
