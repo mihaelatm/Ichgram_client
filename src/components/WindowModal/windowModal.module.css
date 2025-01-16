@@ -1,0 +1,86 @@
+.window_modal {
+  width: 913px;
+  height: 564px;
+  border-radius: 8px;
+  border: 1px solid #000;
+}
+
+.window_modal_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 42px;
+}
+
+.window_modal_title {
+  flex: 1;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.window_modal_share {
+  margin-left: auto;
+  margin-right: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  color: #0095f6;
+}
+
+.separator_one {
+  height: 1px;
+  background-color: #dbdbdb;
+}
+
+.window_modal_content {
+  display: flex;
+  height: 521px;
+}
+
+.import_photo {
+  width: 573px;
+  height: 521px;
+  background-color: #fafafa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.import_photo img {
+  cursor: pointer;
+}
+
+.separator_two {
+  width: 1px;
+  background-color: #dbdbdb;
+  height: 100%;
+}
+
+.content_profile {
+  width: 340px;
+}
+
+.info_person {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 18px;
+  margin-left: 16px;
+}
+
+.smile_icon {
+  margin-top: 186px;
+  margin-bottom: 12px;
+}
+
+.smile_icon img {
+  padding: 0 16px;
+}
+
+.separator_three {
+  height: 1px;
+  background-color: #dbdbdb;
+  width: 100%;
+}

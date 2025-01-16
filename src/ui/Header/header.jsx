@@ -50,7 +50,6 @@ function Header({ userProfileImage }) {
                 <img
                   alt="profile_icon"
                   className={styles.profile}
-                  // Dacă utilizatorul are imagine, o afișăm, altfel afișăm iconița de profil
                   src={
                     userProfileImage ||
                     links.find((link) => link.to === "/profile").icon
