@@ -4,3 +4,9 @@
   flex-wrap: wrap;
   gap: 4px;
 }
+
+.post_image img {
+  width: 308px;
+  height: 308px;
+  object-fit: cover;
+}

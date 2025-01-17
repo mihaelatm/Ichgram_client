@@ -1,20 +1,19 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import EmojiPicker from "../EmojiPicker/EmojiPicker";
 import styles from "./windowModal.module.css";
 import border_profile_icon from "../../assets/icons/border_profile_icon.svg";
 import import_icon from "../../assets/icons/import_icon.svg";
 import createPost from "../../helpers/createPost";
-import { useDispatch } from "react-redux";
 import { addPostImage } from "../../redux/slices/postImageSlice";
 
 function WindowModal({ onClose }) {
   const [image, setImage] = useState(null);
   const [content, setContent] = useState("");
-
   const profileImage = useSelector((state) => state.image.profile_image);
   const username = useSelector((state) => state.username.username);
+  const dispatch = useDispatch();
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -26,7 +25,9 @@ function WindowModal({ onClose }) {
 
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImage(reader.result);
+        const imageUrl = reader.result;
+        setImage(imageUrl);
+        dispatch(addPostImage(imageUrl)); // Adăugăm imaginea în Redux
       };
       reader.readAsDataURL(file);
     }
@@ -116,7 +117,7 @@ function WindowModal({ onClose }) {
               className={styles.content_textarea}
             />
             <div className={styles.smile_icon}>
-              <EmojiPicker onEmojiSelect={handleEmojiSelect} />{" "}
+              <EmojiPicker onEmojiSelect={handleEmojiSelect} />
             </div>
 
             <div className={styles.separator_three}></div>

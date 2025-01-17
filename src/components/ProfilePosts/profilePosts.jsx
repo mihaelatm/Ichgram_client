@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 import styles from "./profilePosts.module.css";
 
 function ProfilePosts() {
-  // Preluăm imaginile postărilor din Redux
   const postImages = useSelector((state) => state.postImages.images);
 
   return (
@@ -11,7 +10,7 @@ function ProfilePosts() {
         postImages.map((image, index) => (
           <div key={index} className={styles.post_image}>
             <img
-              src={`data:image/jpeg;base64,${image}`} // Afișăm imaginea codificată în Base64
+              src={image}
               alt={`Post image ${index + 1}`}
               className={styles.image}
             />
