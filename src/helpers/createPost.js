@@ -1,24 +1,21 @@
 import axios from "axios";
 
-const createPost = async (content, token) => {
+const createPost = async (content) => {
   try {
     const response = await axios.post(
       "http://localhost:3000/api/post",
-      { content },
+      {
+        content: content,
+      },
       {
         headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
     );
-    return response.data;
+    console.log("Post with image created successfully", response.data);
   } catch (error) {
-    console.error(
-      "Error creating post:",
-      error.response?.data || error.message
-    );
-    throw error;
+    console.error("Error creating post with image", error.response.data);
   }
 };
 

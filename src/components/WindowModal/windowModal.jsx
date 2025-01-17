@@ -4,9 +4,11 @@ import styles from "./windowModal.module.css";
 import border_profile_icon from "../../assets/icons/border_profile_icon.svg";
 import import_icon from "../../assets/icons/import_icon.svg";
 import smile_icon from "../../assets/icons/smile_icon.svg";
+import createPost from "../../helpers/createPost";
 
-function WindowModal() {
+function WindowModal({ onClose }) {
   const [image, setImage] = useState(null);
+  const [content, setContent] = useState(""); // Câmp pentru conținutul postării
 
   const profileImage = useSelector((state) => state.image.profile_image);
   const username = useSelector((state) => state.username.username);
@@ -14,6 +16,12 @@ function WindowModal() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      // Verifică dimensiunea fișierului (mai mare de 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        alert("File size is too large. Please choose a smaller image.");
+        return;
+      }
+
       const reader = new FileReader();
       reader.onloadend = () => {
         setImage(reader.result);
@@ -22,20 +30,45 @@ function WindowModal() {
     }
   };
 
+  const handleShare = async () => {
+    try {
+      await createPost(content, image);
+
+      console.log("Post created successfully");
+      onClose();
+    } catch (error) {
+      console.error("Error creating post:", error);
+      alert("Failed to create post. Please try again.");
+    }
+  };
+
   return (
     <div className={styles.modal_container}>
       <div className={styles.window_modal}>
         <div className={styles.window_modal_header}>
           <h3 className={styles.window_modal_title}>Create new post</h3>
-          <p className={styles.window_modal_share}>Share</p>
+          <p className={styles.window_modal_share} onClick={handleShare}>
+            Share
+          </p>
         </div>
 
         <div className={styles.separator_one} />
 
         <div className={styles.window_modal_content}>
           <div className={styles.import_photo}>
-            <label htmlFor="image-upload">
-              <img src={import_icon} alt="import_icon" />
+            <label htmlFor="image-upload" className={styles.upload_label}>
+              {image ? (
+                <img
+                  src={image}
+                  alt="Selected"
+                  className={styles.uploaded_image}
+                />
+              ) : (
+                <div className={styles.upload_placeholder}>
+                  <img src={import_icon} alt="import_icon" />
+                  <p>Drag photos and videos here</p>
+                </div>
+              )}
             </label>
             <input
               type="file"
@@ -45,13 +78,6 @@ function WindowModal() {
               onChange={handleImageChange}
             />
           </div>
-          <div className={styles.separator_two} />
-
-          {image && (
-            <div className={styles.preview_image}>
-              <img src={image} alt="Selected" />
-            </div>
-          )}
 
           <div className={styles.content_profile}>
             <div className={styles.info_person}>
@@ -64,6 +90,13 @@ function WindowModal() {
               </div>
               <p>{username || "username"}</p>
             </div>
+
+            <textarea
+              placeholder="What's on your mind?"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              className={styles.content_textarea}
+            />
             <div className={styles.smile_icon}>
               <img src={smile_icon} alt="smile_icon" />
             </div>

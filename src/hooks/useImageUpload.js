@@ -1,8 +1,6 @@
-// src/hooks/useImageUpload.js
-
 import { useDispatch } from "react-redux";
 import { useRef } from "react";
-import { setProfileImage } from "../redux/slices/imageSlice"; // Poți schimba această acțiune pentru alte nevoi de postări
+import { setProfileImage } from "../redux/slices/imageSlice";
 
 const useImageUpload = () => {
   const dispatch = useDispatch();
@@ -15,11 +13,11 @@ const useImageUpload = () => {
 
       reader.onloadend = () => {
         const base64Image = reader.result;
-        // Dacă se transmite setImage, o folosim pentru a seta imaginea într-o stare
+
         if (setImage) {
-          setImage(base64Image); // Folosit în alte părți (ex: postări)
+          setImage(base64Image);
         } else {
-          dispatch(setProfileImage(base64Image)); // Folosit pentru profil
+          dispatch(setProfileImage(base64Image));
         }
       };
 

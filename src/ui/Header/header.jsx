@@ -9,8 +9,12 @@ import border_profile_icon from "../../assets/icons/border_profile_icon.svg";
 function Header({ userProfileImage }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleModalToggle = () => {
-    setIsModalOpen(!isModalOpen); // Toggle the modal visibility
+  const handleModalOpen = () => {
+    setIsModalOpen(true); // Deschide fereastra modală
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false); // Închide fereastra modală
   };
 
   return (
@@ -44,8 +48,8 @@ function Header({ userProfileImage }) {
                 )}
               </NavLink>
             ) : (
-              // For the "Create" link, show a div that opens the modal
-              <div onClick={handleModalToggle} className={styles.link}>
+              // Butonul "Create" care deschide fereastra modală
+              <div onClick={handleModalOpen} className={styles.link}>
                 <img src={icon} alt={`${label}_icon`} />
                 <span>{label}</span>
               </div>
@@ -76,8 +80,8 @@ function Header({ userProfileImage }) {
         </NavLink>
       </div>
 
-      {/* Afișează fereastra modală doar dacă starea este true */}
-      {isModalOpen && <WindowModal onCloseModal={handleModalToggle} />}
+      {/* Randare condiționată a ferestrei modale */}
+      {isModalOpen && <WindowModal onClose={handleModalClose} />}
     </section>
   );
 }

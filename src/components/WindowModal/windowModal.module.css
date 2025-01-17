@@ -18,6 +18,8 @@
   border-radius: 8px;
   background-color: white;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .window_modal_header {
@@ -25,6 +27,9 @@
   justify-content: space-between;
   align-items: center;
   height: 42px;
+  padding: 0 16px;
+  background-color: white;
+  z-index: 2; /* Asigură că header-ul este deasupra */
 }
 
 .window_modal_title {
@@ -36,12 +41,11 @@
 }
 
 .window_modal_share {
-  margin-left: auto;
-  margin-right: 16px;
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
   color: #0095f6;
+  cursor: pointer;
 }
 
 .separator_one {
@@ -51,20 +55,48 @@
 
 .window_modal_content {
   display: flex;
-  height: 521px;
+  flex: 1;
+  overflow: hidden; /* Previne ieșirea conținutului din container */
 }
 
 .import_photo {
   width: 573px;
-  height: 521px;
+  height: 100%;
   background-color: #fafafa;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden; /* Asigură că imaginea nu iese din container */
 }
 
-.import_photo img {
+.upload_label {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
+}
+
+.upload_placeholder {
+  text-align: center;
+}
+
+.upload_placeholder img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 8px;
+}
+
+.upload_placeholder p {
+  font-size: 14px;
+  color: #8e8e8e;
+}
+
+.uploaded_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .separator_two {
@@ -75,18 +107,16 @@
 
 .content_profile {
   width: 340px;
+  padding: 16px;
 }
 
 .info_person {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-top: 18px;
-  margin-left: 16px;
 }
 
 .profile_image_container {
-  position: relative;
   width: 40px;
   height: 40px;
 }
@@ -104,11 +134,21 @@
 }
 
 .smile_icon img {
-  padding: 0 16px;
+  cursor: pointer;
 }
 
 .separator_three {
+  position: relative;
+  width: calc(100% + 32px);
+  margin-left: -16px;
   height: 1px;
   background-color: #dbdbdb;
+}
+
+.content_textarea {
+  resize: none;
   width: 100%;
+  margin-top: 50px;
+  border: none;
+  outline: none;
 }
