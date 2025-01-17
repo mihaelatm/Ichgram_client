@@ -6,6 +6,8 @@ import styles from "./windowModal.module.css";
 import border_profile_icon from "../../assets/icons/border_profile_icon.svg";
 import import_icon from "../../assets/icons/import_icon.svg";
 import createPost from "../../helpers/createPost";
+import { useDispatch } from "react-redux";
+import { addPostImage } from "../../redux/slices/postImageSlice";
 
 function WindowModal({ onClose }) {
   const [image, setImage] = useState(null);
