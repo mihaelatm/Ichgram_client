@@ -10,8 +10,6 @@ import Profile from "./Pages/Profile/profile";
 import ErrorPage from "./pages/ErrorPage/errorPage";
 import EditProfile from "./pages/EditProfile/editProfile";
 
-// import EditProfile from "./Pages/EditProfile/editProfile";
-
 function App() {
   const location = useLocation();
 
@@ -27,7 +25,7 @@ function App() {
           {/* <Route path="/password_reset" element={<ResetPassword />} /> */}
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
-          {/* <Route path="/edit_profile" element={<EditProfile />} /> */}
+          <Route path="/edit_profile" element={<EditProfile />} />
 
           <Route path="*" element={<ErrorPage />} />
         </Routes>

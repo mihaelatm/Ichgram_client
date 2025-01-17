@@ -37,12 +37,12 @@ const useEditProfile = () => {
 
   const addBulletPoints = (text) => {
     const lines = text.split("\n").map((line) => {
-      if (line.trim() && !line.startsWith("• ")) {
-        return "• " + line.trim();
-      } else if (!line.trim()) {
-        return "";
+      if (line.trim()) {
+        if (!line.startsWith("• ")) {
+          return "• " + line.trim();
+        }
       }
-      return line;
+      return line.trim();
     });
     return lines.join("\n");
   };

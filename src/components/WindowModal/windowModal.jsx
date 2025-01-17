@@ -5,7 +5,6 @@ import EmojiPicker from "../EmojiPicker/EmojiPicker";
 import styles from "./windowModal.module.css";
 import border_profile_icon from "../../assets/icons/border_profile_icon.svg";
 import import_icon from "../../assets/icons/import_icon.svg";
-import smile_icon from "../../assets/icons/smile_icon.svg";
 import createPost from "../../helpers/createPost";
 
 function WindowModal({ onClose }) {
@@ -42,7 +41,7 @@ function WindowModal({ onClose }) {
     }
 
     try {
-      await createPost(content, image);
+      await createPost(content);
       toast.success("Post created successfully!");
       onClose();
     } catch (err) {
@@ -79,8 +78,11 @@ function WindowModal({ onClose }) {
                 />
               ) : (
                 <div className={styles.upload_placeholder}>
-                  <img src={import_icon} alt="import_icon" />
-                  <p>Drag photos and videos here</p>
+                  <img
+                    src={import_icon}
+                    alt="import_icon"
+                    className={styles.import_icon}
+                  />
                 </div>
               )}
             </label>
