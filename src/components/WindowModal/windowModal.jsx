@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import EmojiPicker from "../EmojiPicker/EmojiPicker";
+import UserProfile from "../UserProfile/UserProfile"; // Importăm componenta
 import styles from "./windowModal.module.css";
-import border_profile_icon from "../../assets/icons/border_profile_icon.svg";
 import import_icon from "../../assets/icons/import_icon.svg";
 import createPost from "../../helpers/createPost";
 import { addPostImage } from "../../redux/slices/postImageSlice";
@@ -53,8 +53,17 @@ function WindowModal({ onClose }) {
     }
   };
 
+  const handleOutsideClick = (e) => {
+    if (e.target.classList.contains(styles.modal_container)) {
+      onClose();
+    }
+  };
+
   return (
-    <div className={styles.modal_container}>
+    <div
+      className={styles.modal_container}
+      onClick={handleOutsideClick} // Aici adăugăm handler-ul de click pentru a închide fereastra
+    >
       <div className={styles.window_modal}>
         <div className={styles.window_modal_header}>
           <h3 className={styles.window_modal_title}>Create new post</h3>
@@ -100,14 +109,7 @@ function WindowModal({ onClose }) {
 
           <div className={styles.content_profile}>
             <div className={styles.info_person}>
-              <div className={styles.profile_image_container}>
-                <img
-                  src={profileImage || border_profile_icon}
-                  alt="border_profile_icon"
-                  className={profileImage ? styles.profile_image : ""}
-                />
-              </div>
-              <p>{username || "username"}</p>
+              <UserProfile profileImage={profileImage} username={username} />
             </div>
 
             <textarea

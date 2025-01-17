@@ -1,0 +1,13 @@
+/* Zona de interacțiune */
+.interaction_zone {
+  display: flex;
+  flex-direction: column; /* Pune conținutul pe verticală */
+  justify-content: flex-start; /* Aliniază totul în partea de sus */
+  width: 100%;
+}
+
+.interaction_header {
+  display: flex;
+  justify-content: flex-start; /* Folosește flex-start pentru a alinia corect */
+  width: 100%;
+}

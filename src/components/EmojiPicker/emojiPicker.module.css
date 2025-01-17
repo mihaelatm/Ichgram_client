@@ -1,18 +1,15 @@
 .emoji_picker_container {
-  position: absolute;
-  display: inline-block;
+  position: relative;
 }
 
-.emoji_button {
-  background: none;
-  border: none;
+.smile_icon {
+  font-size: 24px;
   cursor: pointer;
-  font-size: 20px;
 }
 
 .emoji_picker {
   position: absolute;
-  top: 40px;
-  right: 0px;
-  z-index: 1000;
+  bottom: 40px;
+  right: 0;
+  z-index: 100;
 }
