@@ -1,20 +1,22 @@
 import { useState } from "react";
 import styles from "./header.module.css";
 import ichgram_logo from "../../assets/images/ichgram_logo.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import links from "../../utils/links";
 import WindowModal from "../../components/WindowModal/windowModal";
 import border_profile_icon from "../../assets/icons/border_profile_icon.svg";
 
 function Header({ userProfileImage }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleModalOpen = () => {
-    setIsModalOpen(true); // Deschide fereastra modală
+    setIsModalOpen(true);
   };
 
   const handleModalClose = () => {
-    setIsModalOpen(false); // Închide fereastra modală
+    setIsModalOpen(false);
+    navigate("/profile");
   };
 
   return (
@@ -48,11 +50,16 @@ function Header({ userProfileImage }) {
                 )}
               </NavLink>
             ) : (
-              // Butonul "Create" care deschide fereastra modală
-              <div onClick={handleModalOpen} className={styles.link}>
+              <NavLink
+                to="/profile"
+                className={({ isActive }) =>
+                  isActive ? `${styles.link} ${styles.active}` : styles.link
+                }
+                onClick={handleModalOpen}
+              >
                 <img src={icon} alt={`${label}_icon`} />
                 <span>{label}</span>
-              </div>
+              </NavLink>
             )}
           </div>
         ))}
@@ -80,7 +87,6 @@ function Header({ userProfileImage }) {
         </NavLink>
       </div>
 
-      {/* Randare condiționată a ferestrei modale */}
       {isModalOpen && <WindowModal onClose={handleModalClose} />}
     </section>
   );

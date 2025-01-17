@@ -129,7 +129,7 @@
 }
 
 .smile_icon {
-  margin-top: 186px;
+  margin-top: 50px;
   margin-bottom: 12px;
 }
 
@@ -151,4 +151,16 @@
   margin-top: 50px;
   border: none;
   outline: none;
+}
+
+.window_modal_share {
+  cursor: pointer;
+  color: #0095f6;
+  font-weight: bold;
+}
+
+.window_modal_share.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  color: #8e8e8e;
 }

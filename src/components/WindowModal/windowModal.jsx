@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import EmojiPicker from "../EmojiPicker/EmojiPicker";
 import styles from "./windowModal.module.css";
 import border_profile_icon from "../../assets/icons/border_profile_icon.svg";
 import import_icon from "../../assets/icons/import_icon.svg";
@@ -8,7 +10,7 @@ import createPost from "../../helpers/createPost";
 
 function WindowModal({ onClose }) {
   const [image, setImage] = useState(null);
-  const [content, setContent] = useState(""); // Câmp pentru conținutul postării
+  const [content, setContent] = useState("");
 
   const profileImage = useSelector((state) => state.image.profile_image);
   const username = useSelector((state) => state.username.username);
@@ -16,9 +18,8 @@ function WindowModal({ onClose }) {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Verifică dimensiunea fișierului (mai mare de 5MB)
       if (file.size > 5 * 1024 * 1024) {
-        alert("File size is too large. Please choose a smaller image.");
+        toast.error("File size is too large. Please choose a smaller image.");
         return;
       }
 
@@ -30,15 +31,23 @@ function WindowModal({ onClose }) {
     }
   };
 
-  const handleShare = async () => {
+  const handleEmojiSelect = (emoji) => {
+    setContent((prevContent) => prevContent + emoji);
+  };
+
+  const handleModalClose = async () => {
+    if (!image) {
+      toast.warning("Please upload an image before posting.");
+      return;
+    }
+
     try {
       await createPost(content, image);
-
-      console.log("Post created successfully");
+      toast.success("Post created successfully!");
       onClose();
-    } catch (error) {
-      console.error("Error creating post:", error);
-      alert("Failed to create post. Please try again.");
+    } catch (err) {
+      console.error("Error creating post:", err);
+      toast.error("Failed to create post. Please try again.");
     }
   };
 
@@ -47,7 +56,12 @@ function WindowModal({ onClose }) {
       <div className={styles.window_modal}>
         <div className={styles.window_modal_header}>
           <h3 className={styles.window_modal_title}>Create new post</h3>
-          <p className={styles.window_modal_share} onClick={handleShare}>
+          <p
+            className={`${styles.window_modal_share} ${
+              !image ? styles.disabled : ""
+            }`}
+            onClick={image ? handleModalClose : undefined}
+          >
             Share
           </p>
         </div>
@@ -98,7 +112,7 @@ function WindowModal({ onClose }) {
               className={styles.content_textarea}
             />
             <div className={styles.smile_icon}>
-              <img src={smile_icon} alt="smile_icon" />
+              <EmojiPicker onEmojiSelect={handleEmojiSelect} />{" "}
             </div>
 
             <div className={styles.separator_three}></div>
