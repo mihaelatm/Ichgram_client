@@ -11,7 +11,7 @@ const store = configureStore({
     profileLink: profileLinkReducer,
     bio: bioReducer,
     image: imageReducer,
-    postImages: postImageReducer,
+    postImage: postImageReducer,
   },
 });
 

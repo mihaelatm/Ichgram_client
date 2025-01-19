@@ -12,12 +12,8 @@ const postImagesSlice = createSlice({
       state.images.push(action.payload); // Adăugăm imaginea în state
       localStorage.setItem("postImages", JSON.stringify(state.images)); // Salvează în localStorage
     },
-    clearPostImages: (state) => {
-      state.images = [];
-      localStorage.removeItem("postImages");
-    },
   },
 });
 
-export const { addPostImage, clearPostImages } = postImagesSlice.actions;
+export const { addPostImage } = postImagesSlice.actions;
 export default postImagesSlice.reducer;
