@@ -1,19 +1,21 @@
+// postImageSlice.js
+
 import { createSlice } from "@reduxjs/toolkit";
 
-const savedPostImages = JSON.parse(localStorage.getItem("postImages")) || [];
+const initialState = {
+  postImage: null,
+};
 
-const postImagesSlice = createSlice({
-  name: "postImages",
-  initialState: {
-    images: savedPostImages,
-  },
+const postImageSlice = createSlice({
+  name: "postImage",
+  initialState,
   reducers: {
     addPostImage: (state, action) => {
-      state.images.push(action.payload); // Adăugăm imaginea în state
-      localStorage.setItem("postImages", JSON.stringify(state.images)); // Salvează în localStorage
+      state.postImage = action.payload;
     },
   },
 });
 
-export const { addPostImage } = postImagesSlice.actions;
-export default postImagesSlice.reducer;
+export const { addPostImage } = postImageSlice.actions;
+
+export default postImageSlice.reducer;

@@ -5,10 +5,14 @@ import { NavLink, useNavigate } from "react-router-dom";
 import links from "../../utils/links";
 import WindowModal from "../../components/WindowModal/windowModal";
 import border_profile_icon from "../../assets/icons/border_profile_icon.svg";
+import { useSelector } from "react-redux";
 
-function Header({ userProfileImage }) {
+function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
+
+  // Selectează imaginea de profil din Redux (sau din prop)
+  const userProfileImage = useSelector((state) => state.image.profile_image);
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -74,12 +78,14 @@ function Header({ userProfileImage }) {
         >
           {({ isActive }) => (
             <>
-              <div className={styles.profileImageWrapper}>
-                <img
-                  alt="profile_icon"
-                  className={styles.profile}
-                  src={userProfileImage || border_profile_icon}
-                />
+              <div className={styles.profile_image_wrapper}>
+                <div className={styles.profile_border}>
+                  <img
+                    alt="profile_icon"
+                    className={styles.profile}
+                    src={userProfileImage || border_profile_icon}
+                  />
+                </div>
               </div>
               <span>Profile</span>
             </>

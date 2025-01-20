@@ -1,8 +1,7 @@
 import axios from "axios";
 
-const token = localStorage.getItem("token");
-
 const getUserPosts = async () => {
+  const token = localStorage.getItem("token");
   try {
     const response = await axios.get("http://localhost:3000/api/post/all", {
       headers: {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { triggerRefresh } from "../../redux/slices/postSlice";
 import EmojiPicker from "../EmojiPicker/EmojiPicker";
 import UserProfile from "../UserProfile/UserProfile";
 import styles from "./windowModal.module.css";
@@ -9,13 +10,12 @@ import createPost from "../../helpers/createPost";
 import { addPostImage } from "../../redux/slices/postImageSlice";
 
 function WindowModal({ onClose }) {
-  const [image, setImage] = useState(null); // Stocăm imaginea în base64
+  const [image, setImage] = useState(null);
   const [content, setContent] = useState("");
   const profileImage = useSelector((state) => state.image.profile_image);
   const username = useSelector((state) => state.username.username);
   const dispatch = useDispatch();
 
-  // Schimbarea imaginii și conversia ei în base64
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -23,14 +23,8 @@ function WindowModal({ onClose }) {
         toast.error("File size is too large. Please choose a smaller image.");
         return;
       }
-
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const imageUrl = reader.result; // Imaginea în format base64
-        setImage(imageUrl); // Setăm imaginea în state
-        dispatch(addPostImage(imageUrl)); // Adăugăm imaginea în Redux
-      };
-      reader.readAsDataURL(file); // Conversia imaginii în base64
+      setImage(file);
+      dispatch(addPostImage(URL.createObjectURL(file)));
     }
   };
 
@@ -38,16 +32,20 @@ function WindowModal({ onClose }) {
     setContent((prevContent) => prevContent + emoji);
   };
 
-  // Salvarea postării cu imagine în base64
   const handleModalClose = async () => {
     if (!image) {
       toast.warning("Please upload an image before posting.");
       return;
     }
 
+    const formData = new FormData();
+    formData.append("content", content);
+    formData.append("images", image);
+
     try {
-      await createPost(content, image); // Trimitem imaginea în base64 către backend
+      await createPost(formData);
       toast.success("Post created successfully!");
+      dispatch(triggerRefresh());
       onClose();
     } catch (err) {
       console.error("Error creating post:", err);
@@ -62,10 +60,7 @@ function WindowModal({ onClose }) {
   };
 
   return (
-    <div
-      className={styles.modal_container}
-      onClick={handleOutsideClick} // Închiderea ferestrei când se apasă în afara ei
-    >
+    <div className={styles.modal_container} onClick={handleOutsideClick}>
       <div className={styles.window_modal}>
         <div className={styles.window_modal_header}>
           <h3 className={styles.window_modal_title}>Create new post</h3>
@@ -73,7 +68,7 @@ function WindowModal({ onClose }) {
             className={`${styles.window_modal_share} ${
               !image ? styles.disabled : ""
             }`}
-            onClick={image ? handleModalClose : undefined} // Permitem postarea doar dacă există imagine
+            onClick={image ? handleModalClose : undefined}
           >
             Share
           </p>
@@ -86,7 +81,7 @@ function WindowModal({ onClose }) {
             <label htmlFor="image-upload" className={styles.upload_label}>
               {image ? (
                 <img
-                  src={image}
+                  src={URL.createObjectURL(image)}
                   alt="Selected"
                   className={styles.uploaded_image}
                 />
@@ -105,7 +100,7 @@ function WindowModal({ onClose }) {
               id="image-upload"
               accept="image/*"
               style={{ display: "none" }}
-              onChange={handleImageChange} // Când se selectează o imagine, o încărcăm și o convertim în base64
+              onChange={handleImageChange}
             />
           </div>
 
