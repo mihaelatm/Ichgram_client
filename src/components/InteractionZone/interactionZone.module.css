@@ -8,19 +8,19 @@
 .interaction_header {
   display: flex;
   justify-content: flex-start;
-  width: 100%;
-  margin: 12px;
+  padding: 12px;
 }
 
 .user_profile {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  align-items: center;
+  font-weight: 600;
 }
 
 .additionally_icon {
   margin-left: auto;
-  margin-right: 20px;
   cursor: pointer;
 }
 
@@ -30,6 +30,60 @@
   background-color: #dbdbdb;
 }
 
+.profile_image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.username {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15.25px;
+  color: #262626;
+  white-space: nowrap;
+  display: inline;
+}
+
 .post_content {
-  margin: 12px;
+  display: flex;
+  padding: 12px;
+}
+
+.content {
+  display: flex;
+}
+
+.post_text {
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  display: block;
+  max-width: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.text_username {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15.25px;
+  color: #262626;
+}
+
+.text_content {
+  font-size: 11.86px;
+  font-weight: 400;
+  line-height: 15.25px;
+  color: #000;
+}
+
+.created_date {
+  font-size: 10.17px;
+  font-weight: 400;
+  color: #737373;
+  margin-top: 6px;
+  padding-left: 51px;
 }

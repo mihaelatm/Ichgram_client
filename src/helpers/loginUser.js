@@ -20,9 +20,9 @@ const loginUser = async (emailOrUsername, password) => {
     localStorage.setItem("token", token);
 
     return { token, username, profileLink, bio, profile_image };
-  } catch (err) {
+  } catch (error) {
     const errorMessage =
-      err.response?.data?.message || err.message || "Login error";
+      error.response?.data?.message || error.message || "Login error.";
     throw new Error(errorMessage);
   }
 };

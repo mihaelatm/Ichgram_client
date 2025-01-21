@@ -16,20 +16,16 @@ async function registerUser(email, fullName, username, password, profileLink) {
     return { success: true, data: response.data };
   } catch (error) {
     if (error.response) {
-      const backendErrors = error.response.data.errors || {};
       return {
         success: false,
         errors: {
-          email: backendErrors.email,
-          username: backendErrors.username,
-          password: backendErrors.password,
-          message: error.response.data.message,
+          message: error.response.data.message || "An error occurred.",
         },
       };
     } else {
       return {
         success: false,
-        errors: { message: "An error occurred during registration" },
+        errors: { message: "An error occurred during registration." },
       };
     }
   }

@@ -11,6 +11,7 @@ function ProfilePosts() {
   const posts = useSelector((state) => state.posts.userPosts);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedPostId, setSelectedPostId] = useState(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -28,12 +29,14 @@ function ProfilePosts() {
     fetchPosts();
   }, [needsRefresh, dispatch]);
 
-  const handleImageClick = (imageUrl) => {
+  const handleImageClick = (imageUrl, postId) => {
     setSelectedImage(imageUrl);
+    setSelectedPostId(postId);
   };
 
   const handleCloseModal = () => {
     setSelectedImage(null);
+    setSelectedPostId(null);
   };
 
   return (
@@ -49,7 +52,7 @@ function ProfilePosts() {
               src={post.images[0]}
               alt="Post image"
               className={styles.post_image}
-              onClick={() => handleImageClick(post.images[0])}
+              onClick={() => handleImageClick(post.images[0], post._id)}
             />
           </div>
         ))
@@ -57,8 +60,12 @@ function ProfilePosts() {
         <p>No posts yet.</p>
       )}
 
-      {selectedImage && (
-        <ModalWindowPost image={selectedImage} onClose={handleCloseModal} />
+      {selectedImage && selectedPostId && (
+        <ModalWindowPost
+          image={selectedImage}
+          postId={selectedPostId}
+          onClose={handleCloseModal}
+        />
       )}
     </div>
   );

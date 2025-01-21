@@ -1,8 +1,10 @@
 import { useSelector } from "react-redux";
+import { selectPostCount } from "../../redux/slices/postSlice";
 import styles from "./userActivity.module.css";
 
 function UserActivity() {
-  const postCount = useSelector((state) => state.posts?.postCount ?? 0); // Folosim optional chaining și valoare default (0)
+  // Obținem numărul total de postări folosind selectorul din Redux
+  const postCount = useSelector(selectPostCount);
 
   return (
     <div className={styles.profile_content}>

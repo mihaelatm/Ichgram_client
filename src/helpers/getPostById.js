@@ -19,7 +19,10 @@ const getPostById = async (postId) => {
     );
     return response.data;
   } catch (error) {
-    console.error("Error fetching post:", error);
+    console.error(
+      "Error fetching post:",
+      error.response?.data || error.message
+    );
     return { error: "Error fetching post" };
   }
 };

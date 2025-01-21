@@ -1,7 +1,7 @@
-import InteractionZone from "../InteractionZone/interactionZone";
 import styles from "./modalWindowPost.module.css";
+import InteractionZone from "../InteractionZone/interactionZone";
 
-function ModalWindowPost({ image, onClose }) {
+function ModalWindowPost({ image, postId, onClose }) {
   const handleOverlayClick = () => {
     onClose();
   };
@@ -23,9 +23,8 @@ function ModalWindowPost({ image, onClose }) {
               />
             )}
           </div>
-
           <div className={styles.interaction_zone_container}>
-            <InteractionZone />
+            <InteractionZone postId={postId} />
           </div>
         </div>
       </div>
