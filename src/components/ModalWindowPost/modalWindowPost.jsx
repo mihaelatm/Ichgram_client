@@ -3,7 +3,7 @@ import InteractionZone from "../InteractionZone/interactionZone";
 
 function ModalWindowPost({ image, postId, onClose }) {
   const handleOverlayClick = () => {
-    onClose();
+    onClose(); // Închide fereastra modala principală
   };
 
   const handleModalClick = (event) => {
@@ -24,7 +24,8 @@ function ModalWindowPost({ image, postId, onClose }) {
             )}
           </div>
           <div className={styles.interaction_zone_container}>
-            <InteractionZone postId={postId} />
+            <InteractionZone postId={postId} onCloseWindowModal={onClose} />{" "}
+            {/* Transmite funcția onClose */}
           </div>
         </div>
       </div>

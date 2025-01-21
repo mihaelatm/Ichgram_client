@@ -1,22 +1,21 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const deletePost = async (postId) => {
-  const token = localStorage.getItem("token");
-
   try {
-    const response = await axios.delete(`/api/post/${postId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    console.log(response.data.message);
+    const response = await axios.delete(
+      `http://localhost:3000/api/post/${postId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    toast.success("Post deleted successfully!");
+    return response.data;
   } catch (error) {
-    if (error.response) {
-      console.error("Error deleting post:", error.response.data.error);
-    } else {
-      console.error("Server error:", error.message);
-    }
+    console.error("Error deleting post", error);
+    toast.error("Failed to delete post.");
   }
 };
 

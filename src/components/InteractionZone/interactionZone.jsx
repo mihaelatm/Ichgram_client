@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import UserProfile from "../UserProfile/UserProfile";
 import styles from "./interactionZone.module.css";
 import additionally_icon from "../../assets/icons/additionally_icon.svg";
 import DialogWindow from "../DialogWindow/dialogWindow";
 import getPostById from "../../helpers/getPostById";
+import deletePost from "../../helpers/deletePost";
+import { removePost } from "../../redux/slices/postSlice";
 import {
   differenceInMinutes,
   differenceInHours,
@@ -12,9 +14,10 @@ import {
   format,
   isThisYear,
 } from "date-fns";
-import border_profile_icon from "../../assets/icons/border_profile_icon.svg"; // Asigură-te că ai această imagine
+import border_profile_icon from "../../assets/icons/border_profile_icon.svg";
 
-function InteractionZone({ postId }) {
+function InteractionZone({ postId, onCloseWindowModal }) {
+  const dispatch = useDispatch();
   const profileImage = useSelector((state) => state.image.profile_image);
   const username = useSelector((state) => state.username.username);
 
@@ -28,6 +31,17 @@ function InteractionZone({ postId }) {
 
   const handleModalClose = () => {
     setIsModalOpen(false);
+  };
+
+  const handleDelete = async (postId) => {
+    try {
+      await deletePost(postId);
+      dispatch(removePost(postId));
+      handleModalClose(); // Închide fereastra de dialog
+      onCloseWindowModal(); // Închide fereastra principală
+    } catch (err) {
+      console.error("Error deleting post:", err);
+    }
   };
 
   useEffect(() => {
@@ -95,7 +109,6 @@ function InteractionZone({ postId }) {
                   : styles.default_profile_image
               }
             />
-
             <div className={styles.post_text}>
               <p className={styles.text_username}>
                 {username}
@@ -109,7 +122,12 @@ function InteractionZone({ postId }) {
         </div>
       </div>
 
-      <DialogWindow open={isModalOpen} onClose={handleModalClose} />
+      <DialogWindow
+        open={isModalOpen}
+        onClose={handleModalClose}
+        onDelete={handleDelete}
+        postId={postId}
+      />
     </div>
   );
 }

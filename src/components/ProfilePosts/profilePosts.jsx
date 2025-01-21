@@ -4,6 +4,7 @@ import { setPosts } from "../../redux/slices/postSlice";
 import getUserPosts from "../../helpers/getUserPosts";
 import styles from "./profilePosts.module.css";
 import ModalWindowPost from "../ModalWindowPost/ModalWindowPost";
+import DialogWindow from "../DialogWindow/dialogWindow";
 
 function ProfilePosts() {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ function ProfilePosts() {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedPostId, setSelectedPostId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -39,6 +41,10 @@ function ProfilePosts() {
     setSelectedPostId(null);
   };
 
+  const handlePostDeleted = (postId) => {
+    dispatch(setPosts(posts.filter((post) => post._id !== postId)));
+  };
+
   return (
     <div className={styles.profile_posts}>
       {isLoading ? (
@@ -53,6 +59,12 @@ function ProfilePosts() {
               alt="Post image"
               className={styles.post_image}
               onClick={() => handleImageClick(post.images[0], post._id)}
+            />
+            <DialogWindow
+              open={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+              postId={selectedPostId}
+              onPostDeleted={handlePostDeleted}
             />
           </div>
         ))

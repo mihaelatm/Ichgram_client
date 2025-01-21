@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { Modal, Box, Typography } from "@mui/material";
 
-const DialogWindow = ({ open, onClose }) => {
+const DialogWindow = ({ open, onClose, onDelete, postId }) => {
   const [activeButton, setActiveButton] = useState(null);
 
-  const handleButtonClick = (buttonName) => {
+  const handleButtonClick = async (buttonName) => {
     setActiveButton(buttonName);
-    console.log(`${buttonName} clicked`);
+    if (buttonName === "Delete") {
+      onDelete(postId);
+      onClose();
+    }
   };
 
   return (
@@ -19,7 +22,6 @@ const DialogWindow = ({ open, onClose }) => {
           borderRadius: "12px",
           mx: "auto",
           mt: "32vh",
-          mr: "60vh",
           p: 0,
           overflow: "hidden",
           border: "none",
@@ -74,7 +76,7 @@ const DialogWindow = ({ open, onClose }) => {
         <Typography
           variant="body1"
           onClick={() => {
-            navigator.clipboard.writeText("https://example.com/post/123");
+            navigator.clipboard.writeText(`https://example.com/post/${postId}`);
             console.log("Link copied");
           }}
           sx={{
@@ -97,7 +99,7 @@ const DialogWindow = ({ open, onClose }) => {
             py: 1.5,
             cursor: "pointer",
             fontSize: "16px",
-            fontWeight: activeButton === "Cancel" ? 700 : 400, // Dacă butonul este activ, aplicăm bold
+            fontWeight: activeButton === "Cancel" ? 700 : 400,
             fontFamily: "Roboto, sans-serif",
           }}
         >
