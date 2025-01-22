@@ -163,13 +163,12 @@
   border: none;
   outline: none;
   width: 100%;
-  max-width: 600px; /* Limitează lățimea maximă a textarea-ului */
-  height: 150px; /* Înălțimea textarea-ului */
-  padding: 12px 16px; /* Spațiu interior */
-  border-radius: 8px; /* Colțuri rotunjite */
-  border: 1px solid #ccc; /* Bordură gri deschis */
-  background-color: #f9f9f9; /* Culoare de fundal */
-  resize: none; /* Elimină colțul de resize */
+  max-width: 600px;
+  height: 150px;
+  padding: 12px 16px;
+  border-radius: 8px;
+
+  resize: none;
   overflow-y: scroll;
   overflow-x: hidden;
   height: 150px;

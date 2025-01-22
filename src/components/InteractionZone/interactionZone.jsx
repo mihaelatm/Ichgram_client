@@ -16,7 +16,7 @@ import {
 } from "date-fns";
 import border_profile_icon from "../../assets/icons/border_profile_icon.svg";
 
-function InteractionZone({ postId, onCloseWindowModal }) {
+function InteractionZone({ postId, onCloseWindowModal, onEdit }) {
   const dispatch = useDispatch();
   const profileImage = useSelector((state) => state.image.profile_image);
   const username = useSelector((state) => state.username.username);
@@ -37,8 +37,8 @@ function InteractionZone({ postId, onCloseWindowModal }) {
     try {
       await deletePost(postId);
       dispatch(removePost(postId));
-      handleModalClose(); // Închide fereastra de dialog
-      onCloseWindowModal(); // Închide fereastra principală
+      handleModalClose();
+      onCloseWindowModal();
     } catch (err) {
       console.error("Error deleting post:", err);
     }
@@ -125,7 +125,8 @@ function InteractionZone({ postId, onCloseWindowModal }) {
       <DialogWindow
         open={isModalOpen}
         onClose={handleModalClose}
-        onDelete={handleDelete}
+        onDelete={() => handleDelete(postId)}
+        onEdit={() => onEdit(content)}
         postId={postId}
       />
     </div>

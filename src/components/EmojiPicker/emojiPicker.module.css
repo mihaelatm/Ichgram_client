@@ -8,10 +8,12 @@
   border: none;
   cursor: pointer;
   font-size: 20px;
+  padding-top: 20px;
 }
 
 .emoji_picker {
   position: absolute;
   right: 40px;
-  z-index: 1000;
+  top: -80px;
+  z-index: 9999;
 }

@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { Modal, Box, Typography } from "@mui/material";
 
-const DialogWindow = ({ open, onClose, onDelete, postId }) => {
+const DialogWindow = ({ open, onClose, onDelete, onEdit, postId }) => {
   const [activeButton, setActiveButton] = useState(null);
 
   const handleButtonClick = async (buttonName) => {
     setActiveButton(buttonName);
     if (buttonName === "Delete") {
       onDelete(postId);
+      onClose();
+    } else if (buttonName === "Edit") {
+      onEdit(postId);
       onClose();
     }
   };

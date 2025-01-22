@@ -1,34 +1,16 @@
-import { useState, useRef, useEffect } from "react";
 import EmojiPicker from "emoji-picker-react";
 import styles from "./EmojiPicker.module.css";
+import { useState } from "react";
 
 function EmojiPickerComponent({ onEmojiSelect }) {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const emojiPickerRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        emojiPickerRef.current &&
-        !emojiPickerRef.current.contains(event.target)
-      ) {
-        setShowEmojiPicker(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   const handleEmojiClick = (emojiObject) => {
     onEmojiSelect(emojiObject.emoji);
   };
 
   return (
-    <div className={styles.emoji_picker_container} ref={emojiPickerRef}>
+    <div className={styles.emoji_picker_container}>
       <button
         className={styles.emoji_button}
         onClick={() => setShowEmojiPicker(!showEmojiPicker)}
@@ -40,6 +22,8 @@ function EmojiPickerComponent({ onEmojiSelect }) {
           <EmojiPicker
             onEmojiClick={handleEmojiClick}
             width={400}
+            height={360}
+            emojiStyle={{ emojiSize: "0.2em" }} // Dimensiune mai mică
             className={styles.custom_emoji_picker}
           />
         </div>
