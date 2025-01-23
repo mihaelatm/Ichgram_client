@@ -4,12 +4,10 @@ const updatePost = async (postId, content, images) => {
   try {
     const formData = new FormData();
 
-    // Append content if provided
     if (content) {
       formData.append("content", content);
     }
 
-    // Append images if provided
     if (images && images.length > 0) {
       images.forEach((image, index) => {
         formData.append(`images[${index}]`, image);

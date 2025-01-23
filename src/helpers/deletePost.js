@@ -1,22 +1,31 @@
 import axios from "axios";
-import { toast } from "react-toastify";
 
-const deletePost = async (postId) => {
+const updatePost = async (postId, content, images) => {
   try {
-    const response = await axios.delete(
+    const formData = new FormData();
+    formData.append("content", content);
+
+    images.forEach((image, index) => {
+      formData.append(`images[${index}]`, image); // Adăugăm fiecare imagine din array
+    });
+
+    const response = await axios.put(
       `http://localhost:3000/api/post/${postId}`,
+      formData,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "multipart/form-data",
         },
       }
     );
-    toast.success("Post deleted successfully!");
+
+    // Returnăm datele postării actualizate pentru a le folosi ulterior
     return response.data;
   } catch (error) {
-    console.error("Error deleting post", error);
-    toast.error("Failed to delete post.");
+    console.error("Error updating post", error.response.data);
+    // Poți gestiona erorile aici (ex: afișarea unui mesaj în UI)
   }
 };
 
-export default deletePost;
+export default updatePost;

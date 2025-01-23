@@ -22,12 +22,14 @@ const postsSlice = createSlice({
       );
     },
     updatePostContentAndDate: (state, action) => {
-      const { postId, content, createdAt } = action.payload;
+      const { postId, content, createdAt, images } = action.payload;
       const post = state.userPosts.find((post) => post._id === postId);
       if (post) {
         post.content = content;
         post.created_at = createdAt;
+        post.images = images; // Actualizează și imaginile
       }
+      state.needsRefresh = !state.needsRefresh; // Forțează re-renderizarea
     },
   },
 });
