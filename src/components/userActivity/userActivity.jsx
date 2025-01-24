@@ -3,9 +3,8 @@ import { selectPostCount } from "../../redux/slices/postSlice";
 import "/src/styles/globalStyles.css";
 
 function UserActivity() {
+  // Obținem numărul total de postări folosind selectorul din Redux
   const postCount = useSelector(selectPostCount);
-  const followersCount = useSelector((state) => state.user.followers_count); // Presupunem că ai un slice pentru user
-  const followingCount = useSelector((state) => state.user.following_count); // Presupunem că ai un slice pentru user
 
   return (
     <div className="profile_content">
@@ -14,11 +13,11 @@ function UserActivity() {
         <p className="stat_label">posts</p>
       </div>
       <div className="stat">
-        <p className="stat_number">{followersCount}</p>
+        <p className="stat_number">0</p>
         <p className="stat_label">followers</p>
       </div>
       <div className="stat">
-        <p className="stat_number">{followingCount}</p>
+        <p className="stat_number">0</p>
         <p className="stat_label">following</p>
       </div>
     </div>
