@@ -6,6 +6,7 @@ import imageReducer from "../redux/slices/imageSlice";
 import postImageReducer from "../redux/slices/postImageSlice";
 import postsReducer from "../redux/slices/postSlice";
 import otherUserPostsReducer from "../redux/slices/otherUserPostsSlice";
+import followReducer from "../redux/slices/followSlice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     postImage: postImageReducer,
     posts: postsReducer,
     otherUserPosts: otherUserPostsReducer,
+    follow: followReducer,
   },
 });
 

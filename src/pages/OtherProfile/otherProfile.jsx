@@ -1,10 +1,4 @@
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import getUserProfile from "../../helpers/getUserProfile";
-import getUserPosts from "../../helpers/getUserPosts";
-import { setOtherUserPosts } from "../../redux/slices/otherUserPostsSlice"; // Importă acțiunea din noul slice
-import { selectOtherUserPostCount } from "../../redux/slices/otherUserPostsSlice"; // Importă selectorul din noul slice
+import { useOtherProfile } from "../../hooks/useOtherProfile";
 import border_photo from "../../assets/images/border_photo.svg";
 import link_icon from "../../assets/icons/link_icon.svg";
 import Button from "../../components/Button/button";
@@ -12,32 +6,18 @@ import "/src/styles/globalStyles.css";
 import styles from "./otherProfile.module.css";
 
 function OtherProfile() {
-  const { userId } = useParams();
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [posts, setPosts] = useState([]);
-  const dispatch = useDispatch();
-  const postsCount = useSelector(selectOtherUserPostCount); // Folosește selectorul din noul slice
-
-  useEffect(() => {
-    const fetchProfileAndPosts = async () => {
-      try {
-        const userData = await getUserProfile(userId);
-        setUser(userData.data);
-
-        const userPosts = await getUserPosts(userId);
-        setPosts(userPosts); // Păstrează postările în starea locală
-        dispatch(setOtherUserPosts(userPosts)); // Actualizează starea Redux cu postările altui utilizator
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProfileAndPosts();
-  }, [userId, dispatch]);
+  const {
+    user,
+    loading,
+    error,
+    posts,
+    isFollowing,
+    followLoading,
+    postsCount,
+    followersCount,
+    followingCount,
+    handleFollow,
+  } = useOtherProfile();
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -61,23 +41,30 @@ function OtherProfile() {
           <div className="about_content">
             <div className="about_profile">
               <p className="username">{user.username}</p>
-              <Button text="Follow" className={styles.follow_button} />
+
+              {/* Buton Follow/Unfollow */}
+              <Button
+                text={isFollowing ? "Unfollow" : "Follow"}
+                className={styles.follow_button}
+                onClick={handleFollow}
+                disabled={followLoading}
+              />
+
               <Button text="Message" className={styles.message_button} />
             </div>
 
             <div className="activity_container">
               <div className="profile_content">
                 <div className="stat">
-                  <p className="stat_number">{postsCount}</p>{" "}
-                  {/* Afișează numărul de postări din noul slice */}
+                  <p className="stat_number">{postsCount}</p>
                   <p className="stat_label">posts</p>
                 </div>
                 <div className="stat">
-                  <p className="stat_number">0</p>
+                  <p className="stat_number">{followersCount}</p>
                   <p className="stat_label">followers</p>
                 </div>
                 <div className="stat">
-                  <p className="stat_number">0</p>
+                  <p className="stat_number">{followingCount}</p>
                   <p className="stat_label">following</p>
                 </div>
               </div>
@@ -98,7 +85,7 @@ function OtherProfile() {
           </div>
         </div>
 
-        {/* Păstrează secțiunea pentru afișarea postărilor */}
+        {/* Secțiunea pentru afișarea postărilor */}
         <div>
           <div className="profile_posts">
             {posts.length > 0 ? (

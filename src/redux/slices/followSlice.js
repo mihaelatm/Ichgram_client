@@ -1,20 +1,37 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const userSlice = createSlice({
-  name: "user",
-  initialState: {
-    followers_count: 0,
-    following_count: 0,
-  },
+const initialState = {
+  followersCount: 0,
+  followingCount: 0,
+};
+
+const followSlice = createSlice({
+  name: "follow",
+  initialState,
   reducers: {
     setFollowersCount: (state, action) => {
-      state.followers_count = action.payload;
+      state.followersCount = action.payload;
     },
     setFollowingCount: (state, action) => {
-      state.following_count = action.payload;
+      state.followingCount = action.payload;
+    },
+    incrementFollowersCount: (state) => {
+      state.followersCount += 1;
+    },
+    decrementFollowersCount: (state) => {
+      state.followersCount -= 1;
     },
   },
 });
 
-export const { setFollowersCount, setFollowingCount } = userSlice.actions;
-export default userSlice.reducer;
+export const {
+  setFollowersCount,
+  setFollowingCount,
+  incrementFollowersCount,
+  decrementFollowersCount,
+} = followSlice.actions;
+
+export const selectFollowersCount = (state) => state.follow.followersCount;
+export const selectFollowingCount = (state) => state.follow.followingCount;
+
+export default followSlice.reducer;
