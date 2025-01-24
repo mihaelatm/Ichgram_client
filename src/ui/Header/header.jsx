@@ -11,7 +11,6 @@ function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
-  // Selectează imaginea de profil din Redux (sau din prop)
   const userProfileImage = useSelector((state) => state.image.profile_image);
 
   const handleModalOpen = () => {

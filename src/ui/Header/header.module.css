@@ -3,8 +3,9 @@
   flex-direction: column;
   gap: 47px;
   padding-left: 25px;
-  border-right: 2px solid #dbdbdb;
+  border-right: 1px solid #dbdbdb;
   width: 244px;
+  height: 1758px;
   position: fixed;
 }
 

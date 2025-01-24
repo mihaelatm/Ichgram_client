@@ -9,6 +9,8 @@ import Header from "./ui/Header/header";
 import Profile from "./Pages/Profile/profile";
 import ErrorPage from "./pages/ErrorPage/errorPage";
 import EditProfile from "./pages/EditProfile/editProfile";
+import SearchUsers from "./pages/SearchUsers/searchUsers";
+import OtherProfile from "./pages/OtherProfile/otherProfile";
 
 function App() {
   const location = useLocation();
@@ -26,7 +28,8 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/edit_profile" element={<EditProfile />} />
-
+          <Route path="/search/users" element={<SearchUsers />} />
+          <Route path="/user/:userId" element={<OtherProfile />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>

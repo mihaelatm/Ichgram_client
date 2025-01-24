@@ -1,8 +1,6 @@
-// src/components/AboutProfile/AboutProfile.js
-
 import { useNavigate } from "react-router-dom";
 import Button from "../Button/button";
-import styles from "./aboutProfile.module.css";
+import "/src/styles/globalStyles.css";
 import UserActivity from "../userActivity/userActivity";
 import link_icon from "../../assets/icons/link_icon.svg";
 import useAboutProfile from "../../hooks/useAboutProfile";
@@ -17,36 +15,36 @@ function AboutProfile() {
   };
 
   return (
-    <div className={styles.about_content}>
-      <div className={styles.about_profile}>
-        {username && <p className={styles.username}>{username}</p>}
+    <div className="about_content">
+      <div className="about_profile">
+        {username && <p className="username">{username}</p>}
         <Button
           text="Edit profile"
-          className={styles.link_edit_profile}
+          className="link_edit_profile"
           onClick={handleNavigate}
         />
       </div>
 
-      <div className={styles.activity_container}>
+      <div className="activity_container">
         <UserActivity />
       </div>
 
-      <div className={styles.about_info}>
+      <div className="about_info">
         {bio && (
-          <div className={styles.bio}>
+          <div className="bio">
             <p>{bio}</p>
           </div>
         )}
       </div>
 
-      <div className={styles.link}>
+      <div className="link">
         <img src={link_icon} alt="link_icon" />
         <p
-          className={styles.link_text}
+          className="link_text"
           onClick={handleLinkClick}
           style={{ cursor: "pointer" }}
         >
-          {isExpanded ? profileLink : `${profileLink?.substring(0, 7)}...`}
+          {isExpanded ? profileLink : `${profileLink?.substring(0, 14)}...`}
         </p>
       </div>
     </div>

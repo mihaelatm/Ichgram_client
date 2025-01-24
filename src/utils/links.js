@@ -13,7 +13,7 @@ import create_icon from "../assets/icons/create_icon.svg";
 const links = [
   { to: "/home", label: "Home", icon: home_icon, filledIcon: home_icon_filled },
   {
-    to: "/search",
+    to: "/search/users",
     label: "Search",
     icon: search_icon,
     filledIcon: search_icon_filled,

@@ -1,0 +1,28 @@
+.input_wrapper {
+  position: relative;
+}
+
+.search_input {
+  width: 364px;
+  height: 40px;
+  background-color: #efefef;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  padding: 0 16px;
+}
+
+.search_input::placeholder {
+  color: #737373;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 18.75px;
+}
+
+.clear_icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}

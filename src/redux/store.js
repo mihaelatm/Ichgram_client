@@ -5,6 +5,7 @@ import bioReducer from "../redux/slices/bioSlice";
 import imageReducer from "../redux/slices/imageSlice";
 import postImageReducer from "../redux/slices/postImageSlice";
 import postsReducer from "../redux/slices/postSlice";
+import otherUserPostsReducer from "../redux/slices/otherUserPostsSlice";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     image: imageReducer,
     postImage: postImageReducer,
     posts: postsReducer,
+    otherUserPosts: otherUserPostsReducer,
   },
 });
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const searchUsers = async (query, token) => {
+const searchUsers = async (query, token) => {
   try {
     const response = await axios.get("http://localhost:3000/api/search/users", {
       params: { query },
@@ -22,3 +22,5 @@ export const searchUsers = async (query, token) => {
     throw error;
   }
 };
+
+export default searchUsers;

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify"; // Importă toast
 import UserProfile from "../UserProfile/UserProfile";
 import styles from "./interactionZone.module.css";
 import additionally_icon from "../../assets/icons/additionally_icon.svg";
@@ -39,8 +40,10 @@ function InteractionZone({ postId, onCloseWindowModal, onEdit }) {
       dispatch(removePost(postId));
       handleModalClose();
       onCloseWindowModal();
+      toast.success("Post deleted successfully!"); // Mesaj de succes pentru ștergere
     } catch (err) {
       console.error("Error deleting post:", err);
+      toast.error("Failed to delete post."); // Mesaj de eroare pentru ștergere
     }
   };
 
