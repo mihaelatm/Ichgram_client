@@ -10,5 +10,9 @@
 
 .message_button {
   width: 191px;
+}
+
+.unfollow_button {
+  width: 132px;
   background-color: #efefef;
 }
